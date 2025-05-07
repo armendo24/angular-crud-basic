@@ -1,0 +1,39 @@
+<br>
+<div class="header mt-4">
+    <h3 class="text-center">แสดงรายชื่อนักศึกษา</h3>
+</div>
+<div class="container">
+    <div align="end">
+        <button class="btn btn-primary" routerLink="/create">เพิ่มข้อมูล</button>
+    </div>
+    <table class="table shadow rounded" id="table-view-student">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ชื่อ</th>
+                <th scope="col">นามสกุล</th>
+                <th scope="col">Username</th>
+                <th scope="col">แก้ไข</th>
+                <th scope="col">ลบ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (student of dataStudents; track $index) {
+            <tr>
+                <th scope="row">{{student.id}}</th>
+                <td>{{student.fname}}</td>
+                <td>{{student.lname}}</td>
+                <td>{{student.username}}</td>
+                <td>
+                    <button class="btn btn-warning" [routerLink]="['/edit-student']"  [queryParams]="{id: student.id}">
+                        <img src="icon/edit.svg" class="img-edit">
+                    </button>
+                </td>
+                <td><button class="btn btn-danger" (click)="deleteStudent(student.id)">
+                        <img src="icon/delete.svg" class="img-delete">
+                    </button></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

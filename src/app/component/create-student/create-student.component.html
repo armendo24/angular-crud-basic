@@ -1,0 +1,47 @@
+<br>
+<div class="container shadow rounded p-3 mt-4">
+    <div class="header mt-2">
+        <h3 class="text-center">เพิ่มข้อมูลนักศึกษา</h3>
+    </div>
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="fname" class="form-label">ชื่อ</label>
+            <input type="text" class="form-control" id="fname" formControlName="fname" autocomplete="given-name">
+            <div class="text-danger"
+                *ngIf="studentForm.get('fname')?.invalid && (studentForm.get('fname')?.dirty || studentForm.get('fname')?.touched)">
+                กรุณากรอกชื่อ
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="lname" class="form-label">นามสกุล</label>
+            <input type="text" class="form-control" id="lname" formControlName="lname" autocomplete="family-name">
+            <div class="text-danger"
+                *ngIf="studentForm.get('lname')?.invalid && (studentForm.get('lname')?.dirty || studentForm.get('lname')?.touched)">
+                กรุณากรอกนามสกุล
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="username" class="form-label">ชื่อผู้ใช้</label>
+            <input type="text" class="form-control" id="username" formControlName="username" autocomplete="username">
+            <div class="text-danger"
+                *ngIf="studentForm.get('username')?.invalid && (studentForm.get('username')?.dirty || studentForm.get('username')?.touched)">
+                กรุณากรอกชื่อผู้ใช้
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">รหัสผ่าน</label>
+            <input type="password" class="form-control" id="password" formControlName="password" autocomplete="current-password">
+            <div class="text-danger"
+                *ngIf="studentForm.get('password')?.invalid && (studentForm.get('password')?.dirty || studentForm.get('password')?.touched)">
+                กรุณากรอกรหัสผ่าน
+            </div>
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">บันทึกข้อมูล</button>
+        </div>
+    </form>
+</div>
