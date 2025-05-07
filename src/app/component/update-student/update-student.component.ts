@@ -21,6 +21,7 @@ export class UpdateStudentComponent implements OnInit {
     private router: Router
   ) {
     this.studentForm = this.fb.group({
+      id:['' , Validators.required],
       fname: ['', Validators.required],
       lname: ['', Validators.required],
       username: ['', Validators.required],
@@ -33,7 +34,7 @@ export class UpdateStudentComponent implements OnInit {
       console.log(params)
       this.studentId = +params['id'];
       if (this.studentId) {
-        this.api.getStudentById(this.studentId).subscribe((student:any) => {
+        this.api.getStudentById(this.studentId).subscribe((student: any) => {
           console.log(student)
           this.studentForm.patchValue(student?.data);
         });
@@ -46,26 +47,26 @@ export class UpdateStudentComponent implements OnInit {
   onSubmit() {
     if (this.studentForm.valid) {
       console.log(this.studentForm.value);
-      return;
-        this.api.updateStudent(this.studentForm.value).subscribe({
-          next: (response: any) => {
-            // console.log( response);
-            if(response.status){
-              this.api.showSuccess("นักศึกษาถูกสร้างเรียบร้อยแล้ว");
-              this.studentForm.reset();
-            }else{
-              this.api.showError(`เกิดข้อผิดพลาดในการสร้างนักศึกษา ${response.message}`);
-              console.error('เกิดข้อผิดพลาดในการสร้างนักศึกษา', response);
-            }
-          },
-          error: (error: any) => {
-          this.api.showError("เกิดข้อผิดพลาดในการสร้างนักศึกษา");
-            // console.error('เกิดข้อผิดพลาดในการสร้างนักศึกษา', error);
+     
+      this.api.updateStudent(this.studentId, this.studentForm.value).subscribe({
+        next: (response: any) => {
+          // console.log( response);
+          if (response.status) {
+            this.api.showSuccess("นักศึกษาถูกสร้างเรียบร้อยแล้ว");
+            this.studentForm.reset();
+          } else {
+            this.api.showError(`เกิดข้อผิดพลาดในการสร้างนักศึกษา ${response.message}`);
+            console.error('เกิดข้อผิดพลาดในการสร้างนักศึกษา', response);
           }
-        });
-      }else{
-        this.api.showWarning(`กรุณากรอกข้อมูลให้ครบ`);
-      }
+        },
+        error: (error: any) => {
+          this.api.showError("เกิดข้อผิดพลาดในการสร้างนักศึกษา");
+          // console.error('เกิดข้อผิดพลาดในการสร้างนักศึกษา', error);
+        }
+      });
+    } else {
+      this.api.showWarning(`กรุณากรอกข้อมูลให้ครบ`);
     }
+
   }
 }

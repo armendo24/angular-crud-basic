@@ -2,18 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { student } from './interface.service';
 
-interface student {
-  id: number;
-  fname: string;
-  lname: string;
-  username: string;
-}
+ 
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class ApiService {
+  
   constructor(
     private http: HttpClient,
     private toastr: ToastrService
@@ -51,8 +49,8 @@ export class ApiService {
     return this.http.get(`${this.API_URL}/get-student-by-id.php/?id=${id}`);
   }
 
-  updateStudent(id: string, data: any) {
-    return this.http.put(`${this.API_URL}/update-student/${id}`, data);
+  updateStudent(id: string| number, data: any) {
+    return this.http.put(`${this.API_URL}/update-student.php?id=${id}`, data);
   }
 
   deleteStudent(id: string) {

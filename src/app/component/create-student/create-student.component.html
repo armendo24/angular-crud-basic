@@ -3,6 +3,7 @@
     <div class="header mt-2">
         <h3 class="text-center">เพิ่มข้อมูลนักศึกษา</h3>
     </div>
+
     <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
         <div class="mb-3">
             <label for="fname" class="form-label">ชื่อ</label>
@@ -44,4 +45,6 @@
             <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">บันทึกข้อมูล</button>
         </div>
     </form>
+
+    {{studentForm.value | json}}
 </div>

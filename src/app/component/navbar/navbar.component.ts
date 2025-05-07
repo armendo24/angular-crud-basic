@@ -28,7 +28,7 @@ export class NavbarComponent {
     },
     {
       path: 'create',
-      label: 'เพิ่มข้อมูล',
+      label: 'เพิ่มข้อมูลนักศึกษา',
       icon: 'add'
     }
   ]

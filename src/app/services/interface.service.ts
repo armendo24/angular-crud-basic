@@ -4,4 +4,5 @@ export interface student {
   fname: string;
   lname: string;
   username: string;
+  password:string;
 }

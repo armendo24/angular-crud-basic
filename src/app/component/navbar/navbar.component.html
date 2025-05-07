@@ -6,6 +6,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+        
             @for (menu of menus; track $index) {
                  <li class="nav-item">
                     <a class="nav-link" [ngClass]="{'text-primary': isActive(menu.path)}" [routerLink]="menu.path">{{ menu.label }}</a>
@@ -15,3 +16,4 @@
       </div>
     </div>
   </nav>
+ 

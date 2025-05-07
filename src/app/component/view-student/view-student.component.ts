@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { RouterLink } from '@angular/router';
+import { student } from '../../services/interface.service';
 
-interface student {
-  id: number;
-  fname: string;
-  lname: string;
-  username: string;
-}
+
 
 @Component({
   selector: 'app-view-student',
@@ -37,7 +33,7 @@ export class ViewStudentComponent implements OnInit {
 
   deleteStudent(id: number) {
     if(confirm('คุณต้องการลบข้อมูลนักศึกษานี้ใช่หรือไม่?')) {
-      this.api.delete(id.toString()).subscribe({
+      this.api.deleteStudent(id.toString()).subscribe({
         next: (res:any) => {
           console.log(res)
           if(res.status){

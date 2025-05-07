@@ -1,4 +1,4 @@
-<br>
+<!-- <br>
 <div class="header mt-4">
     <h3 class="text-center">แสดงรายชื่อนักศึกษา</h3>
 </div>
@@ -16,6 +16,7 @@
                 <th scope="col">แก้ไข</th>
                 <th scope="col">ลบ</th>
             </tr>
+            
         </thead>
         <tbody>
             @for (student of dataStudents; track $index) {
@@ -34,6 +35,32 @@
                     </button></td>
             </tr>
             }
+        </tbody>
+    </table>
+</div> -->
+
+<div class="container p-2 bg-danger">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ชื่อ - นามสกุล</th>
+                <th>บัญชีผู้ใช้</th>
+                <th>แก้ไข</th>
+                <th>ลบ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (student of dataStudents; track $index) {
+            <tr>
+                <td>
+                    {{student.fname}} - {{student.lname}}
+                </td>
+                <td> {{student.username}}</td>
+                <td><button  class="btn btn-warning" [routerLink]="['/edit']"  [queryParams]="{id: student.id}"> แก้ไข</button></td>
+                <td><button class="btn btn-danger" (click)="deleteStudent(student.id)"> ลบ</button></td>
+            </tr>
+            }
+
         </tbody>
     </table>
 </div>

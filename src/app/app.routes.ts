@@ -15,6 +15,6 @@ export const routes: Routes = [
         path:'view' , component:ViewStudentComponent
     },
     {
-        path:'edit-student' , component:UpdateStudentComponent
+        path:'edit' , component:UpdateStudentComponent
     }
 ];

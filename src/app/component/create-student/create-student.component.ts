@@ -12,21 +12,23 @@ import { CommonModule } from '@angular/common';
   styleUrl: './create-student.component.scss'
 })
 export class CreateStudentComponent {
-  studentForm: FormGroup;
+  studentForm!: FormGroup;
 
   constructor(private api: ApiService, private fb: FormBuilder) {
+ 
     this.studentForm = this.fb.group({
       fname: ['', Validators.required],
       lname: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+
   }
 
   onSubmit() {
     if (this.studentForm.valid) {
       // console.log(this.studentForm.value);
-      this.api.create(this.studentForm.value).subscribe({
+      this.api.createStudent(this.studentForm.value).subscribe({
         next: (response: any) => {
           // console.log( response);
           if(response.status){
